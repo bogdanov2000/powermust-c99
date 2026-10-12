@@ -1,0 +1,17 @@
+name: C99 and ATmega328P
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: make all test sanitize
+      - run: ./build/host-demo
+  avr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y gcc-avr avr-libc binutils-avr
+      - run: make avr

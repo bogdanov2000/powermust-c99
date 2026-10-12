@@ -1,0 +1,22 @@
+powermust-c99
+
+Protocol port informed by and substantially rewritten from:
+  syssi/esphome-powermust
+  https://github.com/syssi/esphome-powermust
+  License: Apache License 2.0 (see LICENSE).
+  Authors/contributors: syssi and esphome-powermust contributors.
+  Analysed upstream tree: 63e07048d89b90c6fb583911fc6758cfc2be69b1
+  powermust.cpp blob: 25fdeef07148b449f419994aa8ef393ecb927dda
+
+Changes (2026-10-12): portable C99 implementation, fixed-point fields,
+bounded buffers, strict frame validation, missing-field validity masks,
+nonblocking UART callbacks, FIFO command IDs and explicit unconfirmed
+control results, recovery quiet period, freshness tracking, AVR example,
+Russian comments/documentation and host/state-machine tests.
+
+Protocol reference:
+  Network UPS Tools, Megatec Protocol information
+  https://networkupstools.org/protocols/megatec.html
+  Kevin Chiou, version 2.7; additional notes curated by NUT contributors.
+
+This is not an official ELTENA driver or a complete gate controller firmware.
