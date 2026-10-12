@@ -107,7 +107,7 @@ pm_result pm_parse_q1(const char *data, size_t size, pm_status *out)
         /* 999% допускается форматом (перегрузка/особенности модели),
          * но не безграничное целое. */
         if (i == 3u && values[i] > 999) return PM_BAD_FRAME;
-        if (known) result.valid_fields |= (uint8_t)(1u << i);
+        if (known) result.valid_fields = (uint8_t)(result.valid_fields | (uint8_t)(1u << i));
     }
     if (!unavailable(t[7])) {
         if (t[7].size != 8u) return PM_BAD_FRAME;
@@ -141,7 +141,7 @@ pm_result pm_parse_f(const char *data, size_t size, pm_rating *out)
     for (i = 0u; i < 4u; ++i) {
         bool known;
         if (!number(t[i], 100u, false, &values[i], &known)) return PM_BAD_FRAME;
-        if (known) result.valid_fields |= (uint8_t)(1u << i);
+        if (known) result.valid_fields = (uint8_t)(result.valid_fields | (uint8_t)(1u << i));
     }
     result.voltage_cV = (uint16_t)values[0];
     result.current_cA = (uint16_t)values[1];
@@ -237,7 +237,8 @@ pm_result pm_queue_control(pm_context *ctx, const char *text, uint16_t id)
     if (size == PM_COMMAND_CAPACITY || !control_valid(text, size))
         return PM_INVALID_ARGUMENT;
     if (ctx->queue_count == PM_QUEUE_CAPACITY) return PM_QUEUE_FULL;
-    tail = (uint8_t)((ctx->queue_head + ctx->queue_count) % PM_QUEUE_CAPACITY);
+    tail = (uint8_t)(((unsigned int)ctx->queue_head +
+                     (unsigned int)ctx->queue_count) % PM_QUEUE_CAPACITY);
     memcpy(ctx->queue[tail].text, text, size + 1u);
     ctx->queue[tail].id = id;
     ++ctx->queue_count;
