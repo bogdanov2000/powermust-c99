@@ -1,5 +1,11 @@
 powermust-c99
 
+C99 implementation, tests, examples, Russian comments and documentation:
+  Written by ChatGPT (OpenAI), at the request of Sergey Bogdanov.
+  Project requester and repository owner: Sergey Bogdanov (bogdanov2000).
+  This statement identifies how the work was produced; it does not replace
+  the upstream attribution or Apache-2.0 license below.
+
 Protocol port informed by and substantially rewritten from:
   syssi/esphome-powermust
   https://github.com/syssi/esphome-powermust

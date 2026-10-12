@@ -1,4 +1,5 @@
 /* SPDX-License-Identifier: Apache-2.0
+ * C99-реализация и комментарии: ChatGPT (OpenAI), по заданию Сергея Богданова.
  * Существенно изменённый перенос syssi/esphome-powermust на C99.
  * ESPHome/STL/динамическая память исключены. См. NOTICE.
  */
